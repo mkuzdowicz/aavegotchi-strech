@@ -38,6 +38,7 @@ const initWeb3 = async () => {
 
 const login = async () => {
     await Moralis.Web3.authenticate()
+
     const user = await Moralis.User.current()
     const userEthAddress = user.get('ethAddress')
     console.log('user ethAddress after login', userEthAddress)

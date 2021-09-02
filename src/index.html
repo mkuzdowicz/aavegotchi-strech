@@ -11,6 +11,7 @@
 
   <!-- fonts -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
 
   <!-- custom css -->
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -21,24 +22,25 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
+  <nav id="main-nav" class="navbar">
     <div class="container-fluid">
       <div id="nav-text" class="float-start">
         <h4>Aavegotchi Strech MiniGame</h4>
         <p>strech 💪&nbsp your neck and move the gotchi up 🆙</p> 
       </div>
       <div class="float-end btn-group-vertical" role="group">
-        <button id="connect-wallet" class="btn btn-outline-primary">Connect Wallet</button>
+        <button id="connect-wallet" class="btn">Connect Wallet</button>
         <button id="logout" class="btn btn-outline-danger">logout</button>
       </div>
     </div>
   </nav>
   <div id="welcom-bg" class="container-fluid">
     <div id="welcom-bg-container" class="text-center">
-      <button id="play-btn" type="button" class="btn btn-danger align-self-center">play 🎮</button>
+      <button id="play-btn" type="button" class="btn btn-outline-danger btn-lg align-self-center">play 🎮</button>
       <br>
       <br>
-      <p>you will need to allow acces to your webcam/camera 📷</p>
+      <h2>you will need to allow acces to your webcam/camera 📷</h2>
+      <h4>~\(^o^)/~</h4>
     </div>
   </div>
   <div style="display: none;" id="main-canvas"></div>

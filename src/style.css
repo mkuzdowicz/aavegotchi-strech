@@ -1,3 +1,7 @@
+body {
+  font-family: Orbitron !important;
+}
+
 .webcam-stream {
   transform: scaleX(-1);
 }
@@ -8,7 +12,7 @@
 }
 
 #welcom-bg {
-  background-color: #66B2FF;
+  background-color: #090215;
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -44,4 +48,28 @@
 
 #nav-text {
   line-height: 0.5;
+}
+
+#main-nav {
+  background-color: #240650;
+  color: #F7F7F8;
+}
+
+#main-nav p {
+  color: #FB35F3;
+}
+
+
+#main-nav .btn#connect-wallet {
+  color: white;
+  background-color: #6E19F8;
+}
+
+#play-btn {
+  background-color: #6E19F8;
+  color: #F0E6FE;
+}
+
+#welcom-bg-container h2 {
+  color: #FB35F3;
 }
