@@ -12,26 +12,46 @@ import * as MoralisSDK from 'moralis'
 dotenv.config({ path: ".env" })
 const moralisAppID = process.env.MORALIS_APPLICATION_ID
 const moralisServerUrl = process.env.MORALIS_SERVER_URL
+const connectWalletBtn = document.getElementById('connect-wallet')
 
 const Moralis = MoralisSDK.default
 Moralis.initialize(moralisAppID)
 Moralis.serverURL = moralisServerUrl
 
+const ethAddressEllipsis = (str) => {
+    if (str.length > 15) {
+      return str.substr(0, 5) + '...' + str.substr(str.length-5, str.length);
+    }
+    return str;
+  }
+
 const initWeb3 = async () => {
     window.web3 = await Moralis.Web3.enable()
     const user = await Moralis.User.current()
-    console.log('current user', user)
+    if (user) {
+        const userEthAddress = user.get('ethAddress')
+        console.log('current user ethAddress', userEthAddress)
+        connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
+    }
 }
+
 
 const login = async () => {
     await Moralis.Web3.authenticate()
     const user = await Moralis.User.current()
-    console.log('user after login', user)
+    const userEthAddress = user.get('ethAddress')
+    console.log('user ethAddress after login', userEthAddress)
+    connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
 }
 
-const logout = async () => await Moralis.User.logOut()
+const logoutBtn = document.getElementById('logout')
+const logout = async () => {
+    await Moralis.User.logOut()
+    console.log('current user logout')
+    connectWalletBtn.innerHTML = 'Connect Wallet'
+}
+logoutBtn.onclick = logout
 
-const connectWalletBtn = document.getElementById('connect-wallet')
 connectWalletBtn.onclick = login
 
 initWeb3()
