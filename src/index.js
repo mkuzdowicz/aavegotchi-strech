@@ -6,14 +6,35 @@ import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 import getAnglesBetween from './angles';
 import * as dotenv from 'dotenv'
+import * as MoralisSDK from 'moralis'
 
+// init moralis
 dotenv.config({ path: ".env" })
-
 const moralisAppID = process.env.MORALIS_APPLICATION_ID
-console.log('moralisAppID', moralisAppID)
-
 const moralisServerUrl = process.env.MORALIS_SERVER_URL
-console.log('moralisServerUrl', moralisServerUrl)
+
+const Moralis = MoralisSDK.default
+Moralis.initialize(moralisAppID)
+Moralis.serverURL = moralisServerUrl
+
+const initWeb3 = async () => {
+    window.web3 = await Moralis.Web3.enable()
+    const user = await Moralis.User.current()
+    console.log('current user', user)
+}
+
+const login = async () => {
+    await Moralis.Web3.authenticate()
+    const user = await Moralis.User.current()
+    console.log('user after login', user)
+}
+
+const logout = async () => await Moralis.User.logOut()
+
+const connectWalletBtn = document.getElementById('connect-wallet')
+connectWalletBtn.onclick = login
+
+initWeb3()
 
 // TODO wasm is much faster investigate why
 // + vendor the dist
