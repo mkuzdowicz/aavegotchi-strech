@@ -23,9 +23,7 @@
     "dotenv": "^10.0.0",
     "moralis": "^0.0.41",
     "parcel-bundler": "^1.12.5",
-    "party-js": "^2.0.1",
-    "vendor": "^1.7.0",
-    "web3": "^1.5.2"
+    "party-js": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
