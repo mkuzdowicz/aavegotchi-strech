@@ -24,6 +24,7 @@
     "moralis": "^0.0.41",
     "parcel-bundler": "^1.12.5",
     "party-js": "^2.0.1",
+    "vendor": "^1.7.0",
     "web3": "^1.5.2"
   },
   "devDependencies": {

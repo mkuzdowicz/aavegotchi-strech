@@ -1,19 +1,29 @@
 import party from "party-js"
+import svgPath from "./vendor/icon/aavegotchi.svg"
 
 const canvasParent = document.getElementById('main-canvas')
+
+let img;
+
+const loadImgFn = () => {
+  img = window.loadImage(svgPath)
+  console.log('image loaded', img)
+}
+
+window.preload = () => {
+  loadImgFn()
+}
 
 class Ball {
   constructor(x, y) {
     this.x = x
-    this.y = y
+    this.y = y - 50
     this.speed = 1.8
   }
 
   draw() {
-    const r = 50
-    stroke(40);
-    fill(254, 255, 254);
-    ellipse(this.x, this.y, r, r);
+    const r = 80
+    image(img, this.x, this.y, r, r)
   }
 
   moveUp() {
