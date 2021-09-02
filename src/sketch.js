@@ -12,7 +12,7 @@ class Ball {
   draw() {
     const r = 50
     stroke(40);
-    fill(228, 26, 74);
+    fill(254, 255, 254);
     ellipse(this.x, this.y, r, r);
   }
 
@@ -35,14 +35,14 @@ function getHeight() {
 }
 
 function drawLadder() {
-  fill(0, 153, 0);
+  fill(81, 1, 176);
   const rectWidth = 80
   rect((window.innerWidth / 2) - rectWidth / 2, 0, 80, window.innerHeight - 90);
 }
 
 function drawBackground() {
   noStroke();
-  background(102, 178, 255);
+  background(18, 2, 47);
 }
 
 let ball
