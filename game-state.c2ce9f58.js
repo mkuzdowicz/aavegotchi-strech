@@ -140,4 +140,4 @@ window.gameStateIsInMove = function () {
 
 window.gameStateInit();
 },{}]},{},["lPRR"], null)
-//# sourceMappingURL=https://coderdidit.com/aavegotchi-strech-minigame/game-state.c2ce9f58.js.map
+//# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/game-state.c2ce9f58.js.map

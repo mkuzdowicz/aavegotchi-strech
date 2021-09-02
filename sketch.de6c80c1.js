@@ -2279,7 +2279,7 @@ var PartyGlobal = __assign(__assign(__assign(__assign(__assign({}, components), 
 exports.default = PartyGlobal;
 
 },{"./components":"j4tr","./particles/emitter":"Q80F","./particles/particle":"B3L4","./scene":"v3hz","./settings":"Tszg","./systems/math":"xYA8","./systems/modules":"plmB","./systems/random":"ouuR","./systems/shapes":"laE5","./systems/sources":"HP0e","./systems/variation":"qZKR","./templates":"FoMx","./util":"CXlP"}],"Ued4":[function(require,module,exports) {
-module.exports = "https://coderdidit.com/aavegotchi-strech-minigame/aavegotchi.69844a06.svg";
+module.exports = "https://coderdidit.com/aavegotchi-strech/aavegotchi.69844a06.svg";
 },{}],"nyCU":[function(require,module,exports) {
 "use strict";
 
@@ -2383,4 +2383,4 @@ window.draw = function () {
   }
 };
 },{"party-js":"rnaI","./vendor/icon/aavegotchi.svg":"Ued4"}]},{},["nyCU"], null)
-//# sourceMappingURL=https://coderdidit.com/aavegotchi-strech-minigame/sketch.de6c80c1.js.map
+//# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/sketch.de6c80c1.js.map
