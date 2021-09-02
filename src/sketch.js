@@ -4,6 +4,7 @@ import svgPath from "./vendor/icon/aavegotchi.svg"
 const canvasParent = document.getElementById('main-canvas')
 
 let img;
+const gotchiSize = 80
 
 const loadImgFn = () => {
   img = window.loadImage(svgPath)
@@ -22,8 +23,7 @@ class Ball {
   }
 
   draw() {
-    const r = 80
-    image(img, this.x, this.y, r, r)
+    image(img, this.x, this.y, gotchiSize, gotchiSize)
   }
 
   moveUp() {
@@ -64,7 +64,7 @@ window.setup = () => {
   sketchCanvas.parent("main-canvas");
 
   // init ball
-  let x = (window.innerWidth / 2);
+  let x = (window.innerWidth / 2) - (gotchiSize / 2);
   let y = getHeight() - 9;
   ball = new Ball(x, y)
 }
