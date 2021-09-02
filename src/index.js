@@ -5,6 +5,15 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 import getAnglesBetween from './angles';
+import * as dotenv from 'dotenv'
+
+dotenv.config({ path: ".env" })
+
+const moralisAppID = process.env.MORALIS_APPLICATION_ID
+console.log('moralisAppID', moralisAppID)
+
+const moralisServerUrl = process.env.MORALIS_SERVER_URL
+console.log('moralisServerUrl', moralisServerUrl)
 
 // TODO wasm is much faster investigate why
 // + vendor the dist
