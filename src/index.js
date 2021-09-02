@@ -5,57 +5,58 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 import getAnglesBetween from './angles';
-import * as dotenv from 'dotenv'
-import * as MoralisSDK from 'moralis'
+// import * as dotenv from 'dotenv'
+// import * as MoralisSDK from 'moralis'
 
 // init moralis
-dotenv.config({ path: ".env" })
-const moralisAppID = process.env.MORALIS_APPLICATION_ID
-const moralisServerUrl = process.env.MORALIS_SERVER_URL
-const connectWalletBtn = document.getElementById('connect-wallet')
+// dotenv.config({ path: ".env" })
+// const moralisAppID = process.env.MORALIS_APPLICATION_ID
+// const moralisServerUrl = process.env.MORALIS_SERVER_URL
+// const connectWalletBtn = document.getElementById('connect-wallet')
 
-const Moralis = MoralisSDK.default
-Moralis.initialize(moralisAppID)
-Moralis.serverURL = moralisServerUrl
+// const Moralis = MoralisSDK.default
+// Moralis.initialize(moralisAppID)
+// Moralis.serverURL = moralisServerUrl
 
-const ethAddressEllipsis = (str) => {
-    if (str.length > 15) {
-      return str.substr(0, 5) + '...' + str.substr(str.length-5, str.length);
-    }
-    return str;
-  }
+// const ethAddressEllipsis = (str) => {
+//     if (str.length > 15) {
+//       return str.substr(0, 5) + '...' + str.substr(str.length-5, str.length);
+//     }
+//     return str;
+//   }
 
-const initWeb3 = async () => {
-    window.web3 = await Moralis.Web3.enable()
-    const user = await Moralis.User.current()
-    if (user) {
-        const userEthAddress = user.get('ethAddress')
-        console.log('current user ethAddress', userEthAddress)
-        connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
-    }
-}
+// const initWeb3 = async () => {
+//     window.web3 = await Moralis.Web3.enable()
+//     const user = await Moralis.User.current()
+//     if (user) {
+//         const userEthAddress = user.get('ethAddress')
+//         console.log('current user ethAddress', userEthAddress)
+//         connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
+//     }
+// }
 
 
-const login = async () => {
-    await Moralis.Web3.authenticate()
+// const login = async () => {
+//     await Moralis.Web3.authenticate()
 
-    const user = await Moralis.User.current()
-    const userEthAddress = user.get('ethAddress')
-    console.log('user ethAddress after login', userEthAddress)
-    connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
-}
+//     const user = await Moralis.User.current()
+//     const userEthAddress = user.get('ethAddress')
+//     console.log('user ethAddress after login', userEthAddress)
+//     connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
+// }
 
-const logoutBtn = document.getElementById('logout')
-const logout = async () => {
-    await Moralis.User.logOut()
-    console.log('current user logout')
-    connectWalletBtn.innerHTML = 'Connect Wallet'
-}
-logoutBtn.onclick = logout
+// const logoutBtn = document.getElementById('logout')
+// const logout = async () => {
+//     await Moralis.User.logOut()
+//     console.log('current user logout')
+//     connectWalletBtn.innerHTML = 'Connect Wallet'
+// }
+// logoutBtn.onclick = logout
 
-connectWalletBtn.onclick = login
+// connectWalletBtn.onclick = login
 
-initWeb3()
+// initWeb3()
+// finish Moralis
 
 // TODO wasm is much faster investigate why
 // + vendor the dist
