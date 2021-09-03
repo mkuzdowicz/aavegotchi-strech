@@ -9,10 +9,10 @@
 - Move `Aavegotchi` by streching your neck (moving your head) thanks to `Tensorflow.js`
 
 ### Whats Next
-- load Aavegotchi SVG from Polygon chain NFT
-- display info about loaded Aavegotchi NFT
-- imporve gameplay (Use Phaser) 
-- imporve gameplay such that Aavegotchi NFT can gain Expirence
+- load `Aavegotchi SVG` from `NFT`
+- display info about loaded `Aavegotchi NFT`
+- imporve gameplay (Use `Phaser`) 
+- imporve gameplay such that `Aavegotchi NFT` can gain `Expirence`
 
 # Technologies Used
 - Tensorflow.js
