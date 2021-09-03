@@ -26,7 +26,7 @@ const setupPlayerSVG = async () => {
   return svgDataUri
 }
 
-const setupSketck = async () => {
+const setupSketch = async () => {
   const svgDataUri = await setupPlayerSVG()
   const canvasParent = document.getElementById('main-canvas')
 
@@ -113,5 +113,5 @@ const setupSketck = async () => {
 }
 
 // init sketch
-setupSketck()
+setupSketch()
 
