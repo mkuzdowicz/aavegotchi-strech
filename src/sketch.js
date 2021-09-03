@@ -11,7 +11,7 @@ Moralis.serverURL = moralisServerUrl
 // fetch and setup player SVG
 const setupPlayerSVG = async () => {
   const numericTraits = [1, 5, 99, 29, 1, 1]
-  const equippedWearables = [23, 8, 4, 43, 0, 4, 0, 1, 0, 0, 0, 3, 7, 0, 0, 0]
+  const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   const rawSVG = await Moralis.Cloud.run("getSVG", { numericTraits: numericTraits, equippedWearables: equippedWearables })
   const removeBG = (svg) => {
     const styledSvg = svg.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
