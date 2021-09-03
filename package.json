@@ -20,7 +20,6 @@
     "@tensorflow/tfjs-backend-webgl": "^3.7.0",
     "@tensorflow/tfjs-converter": "^3.7.0",
     "@tensorflow/tfjs-core": "^3.7.0",
-    "dotenv": "^10.0.0",
     "moralis": "^0.0.41",
     "parcel-bundler": "^1.12.5",
     "party-js": "^2.0.1"
@@ -29,6 +28,7 @@
     "@babel/core": "^7.14.6",
     "babel-jest": "^27.0.5",
     "jest": "^27.0.5",
-    "ts-jest": "^27.0.3"
+    "ts-jest": "^27.0.3",
+    "dotenv": "^10.0.0"
   }
 }
