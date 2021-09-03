@@ -19,7 +19,7 @@ body {
 }
 
 #welcom-bg-container {
-  margin-top: 35vh;
+  margin-top: 15%;
   color: whitesmoke;
 }
 
@@ -72,4 +72,9 @@ body {
 
 #welcom-bg-container h2 {
   color: #FB35F3;
+}
+
+#aavegotchi-preview {
+  max-width: 150px;
+  max-height: 150px;
 }
