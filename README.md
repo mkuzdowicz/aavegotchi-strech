@@ -3,9 +3,9 @@
 ![aavegotchi-moralis-1](https://user-images.githubusercontent.com/86926500/132018421-8752a6be-36ea-41ec-b2ee-5bcee7f8a9be.gif)
 
 suported features so far:
-- login with metamask and display loggedin address
+- login with metamask by using Moralis and display logged-in address
 - load Aavegotchi SVG from file into game
-- Move Aavegotchi by streching your neck (moving your head) thaks to Tensorflow.js
+- Move Aavegotchi by streching your neck (moving your head) thanks to Tensorflow.js
 
 # Whats Next
 - load Aavegotchi SVG from Polygon chain NFT
