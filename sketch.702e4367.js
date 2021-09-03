@@ -2279,7 +2279,7 @@ var PartyGlobal = __assign(__assign(__assign(__assign(__assign({}, components), 
 exports.default = PartyGlobal;
 
 },{"./components":"../node_modules/party-js/lib/components/index.js","./particles/emitter":"../node_modules/party-js/lib/particles/emitter.js","./particles/particle":"../node_modules/party-js/lib/particles/particle.js","./scene":"../node_modules/party-js/lib/scene.js","./settings":"../node_modules/party-js/lib/settings.js","./systems/math":"../node_modules/party-js/lib/systems/math.js","./systems/modules":"../node_modules/party-js/lib/systems/modules.js","./systems/random":"../node_modules/party-js/lib/systems/random.js","./systems/shapes":"../node_modules/party-js/lib/systems/shapes.js","./systems/sources":"../node_modules/party-js/lib/systems/sources.js","./systems/variation":"../node_modules/party-js/lib/systems/variation.js","./templates":"../node_modules/party-js/lib/templates/index.js","./util":"../node_modules/party-js/lib/util/index.js"}],"vendor/icon/aavegotchi.svg":[function(require,module,exports) {
-module.exports = "/aavegotchi.95522aa3.svg";
+module.exports = "https://coderdidit.com/aavegotchi-strech/aavegotchi.95522aa3.svg";
 },{}],"sketch.js":[function(require,module,exports) {
 "use strict";
 
@@ -2410,7 +2410,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60055" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63379" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -2587,4 +2587,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","sketch.js"], null)
-//# sourceMappingURL=/sketch.702e4367.js.map
+//# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/sketch.702e4367.js.map

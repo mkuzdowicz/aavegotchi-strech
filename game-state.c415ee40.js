@@ -167,7 +167,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60055" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63379" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -344,4 +344,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","game-state.js"], null)
-//# sourceMappingURL=/game-state.c415ee40.js.map
+//# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/game-state.c415ee40.js.map
