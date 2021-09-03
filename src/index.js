@@ -5,13 +5,11 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 import getAnglesBetween from './angles';
-import * as dotenv from 'dotenv'
 import * as MoralisSDK from 'moralis'
 
 // init moralis
-dotenv.config({ path: ".env" })
-const moralisAppID = process.env.MORALIS_APPLICATION_ID
-const moralisServerUrl = process.env.MORALIS_SERVER_URL
+const moralisAppID = process.env.MORALIS_APPLICATION_ID || ''
+const moralisServerUrl = process.env.MORALIS_SERVER_URL || ''
 const connectWalletBtn = document.getElementById('connect-wallet')
 
 const Moralis = MoralisSDK.default
