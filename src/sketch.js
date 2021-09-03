@@ -1,20 +1,18 @@
 import party from "party-js"
-// import svgPath from "./vendor/icon/aavegotchi.svg"
+import svgPath from "./vendor/icon/aavegotchi.svg"
 
 const canvasParent = document.getElementById('main-canvas')
 
 let img;
 const gotchiSize = 80
 
-// TODO
-// const loadImgFn = () => {
-//   img = window.loadImage(svgPath)
-//   console.log('image loaded', img)
-// }
+const loadImgFn = () => {
+  img = window.loadImage(svgPath)
+  console.log('image loaded', img)
+}
 
 window.preload = () => {
-  // TODO
-  // loadImgFn()
+  loadImgFn()
 }
 
 class Ball {
@@ -25,12 +23,7 @@ class Ball {
   }
 
   draw() {
-    // TODO
-    // image(img, this.x, this.y, gotchiSize, gotchiSize)
-    const r = 50
-    stroke(40);
-    fill(228, 26, 74);
-    ellipse(this.x, this.y, r, r);
+    image(img, this.x, this.y, gotchiSize, gotchiSize)
   }
 
   moveUp() {
@@ -71,9 +64,7 @@ window.setup = () => {
   sketchCanvas.parent("main-canvas");
 
   // init ball
-  // TODO
-  // let x = (window.innerWidth / 2) - (gotchiSize / 2)
-  let x = (window.innerWidth / 2)
+  let x = (window.innerWidth / 2) - (gotchiSize / 2);
   let y = getHeight() - 9;
   ball = new Ball(x, y)
 }
