@@ -3,7 +3,9 @@
 
 ![gotchi-jam-devlog2](https://user-images.githubusercontent.com/86926500/132110272-a570f63c-3a8d-4161-b474-7e1e7043d8d2.gif)
 
-[video deom](https://www.youtube.com/watch?v=WJXl-rI7pyA)
+[video demo](https://www.youtube.com/watch?v=WJXl-rI7pyA)
+
+[Paly it here (game is deployed)](https://coderdidit.com/aavegotchi-strech)
 
 ### Supported features so far:
 - It works mainly on `Google Chrome`
