@@ -80,21 +80,22 @@ const setupSketch = async () => {
   }
 
   const loadAssetsFn = () => {
-    gotchiImg = window.loadImage(svgDataUri)
+    gotchiImg = window.loadImage(svgDataUri) // p5js fn
 
     successSound = new Audio(successSoundPath)
     successSound.volume = 0.5
     popSound = new Audio(popSoundPath)
     popSound.volume = 0.2
 
-    graveyardBG = window.loadImage(graveyardBGPath)
+    graveyardBG = window.loadImage(graveyardBGPath) // p5js fn
 
-    desertBG = window.loadImage(desertBGPath)
-    forestBG = window.loadImage(forestBGPath)
-    winterBG = window.loadImage(winterBGPath)
+    desertBG = window.loadImage(desertBGPath) // p5js fn
+    forestBG = window.loadImage(forestBGPath) // p5js fn
+    winterBG = window.loadImage(winterBGPath) // p5js fn
     backgrounds = [graveyardBG, desertBG, forestBG, winterBG]
   }
 
+  // p5js fn
   window.preload = () => {
     loadAssetsFn()
   }
@@ -107,7 +108,7 @@ const setupSketch = async () => {
     }
 
     draw() {
-      image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize)
+      window.image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize) // p5js fn
     }
 
     moveUp() {
@@ -151,17 +152,17 @@ const setupSketch = async () => {
   const h = window.innerHeight / 1.25
 
   function drawLadder() {
-    fill(81, 1, 176);
+    window.fill(81, 1, 176); // p5js fn
     const rectWidth = 100
-    rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90);
+    window.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90); // p5js fn
   }
 
   function drawBackground(bg) {
-    noStroke();
-    background(bg);
+    window.noStroke();
+    window.background(bg);
   }
 
-  let gotchi
+  let gotchi;
 
   // needs to be defined in window for bundler
   window.setup = () => {
