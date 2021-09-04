@@ -20,8 +20,8 @@
 ### What's Next
 - improve gameplay (By using `Phaser` instead of `p5.js`)
     - I have an idea for a `vertical floppy bird` like game
-    - I think nech streches can be integrated nicelly into that
-- load `Aavegotchi SVG` from `NFT`
+    - I think neck streches can be integrated nicelly into that
+- load `Aavegotchi SVG` from real `Aavegotchi NFT`
 - display info about loaded `Aavegotchi NFT`
 - `Aavegotchi NFT` will gain `Experience` through gameplay
 
