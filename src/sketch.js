@@ -1,6 +1,13 @@
 import party from "party-js"
 import * as MoralisSDK from 'moralis'
 
+// bg
+import bg1Path from './vendor/assets/bg/BG.png'
+// sounds
+import successSoundPath from './vendor/assets/sounds/success.mp3'
+import popSoundPath from './vendor/assets/sounds/pop.mp4'
+
+
 // init moralis
 const moralisAppID = process.env.MORALIS_APPLICATION_ID || ''
 const moralisServerUrl = process.env.MORALIS_SERVER_URL || ''
@@ -38,16 +45,23 @@ const setupPlayerSVG = async () => {
   return svgDataUri
 }
 
+let score = 0;
+
 const setupSketch = async () => {
   const svgDataUri = await setupPlayerSVG()
   const canvasParent = document.getElementById('main-canvas')
 
-  let img;
+  let img, bg1;
+  let successSound, popSound;
   const gotchiSize = 80
 
   const loadImgFn = () => {
     img = window.loadImage(svgDataUri)
-    console.log('image loaded', img)
+    bg1 = window.loadImage(bg1Path)
+    successSound = new Audio(successSoundPath)
+    successSound.volume = 0.5
+    popSound = new Audio(popSoundPath)
+    popSound.volume = 0.2
   }
 
   window.preload = () => {
@@ -58,7 +72,7 @@ const setupSketch = async () => {
     constructor(x, y) {
       this.x = x
       this.y = y - 50
-      this.speed = 1.8
+      this.speed = 3
     }
 
     draw() {
@@ -71,8 +85,12 @@ const setupSketch = async () => {
       // Reset to the bottom
       // if top was reached
       if (this.y < 0) {
+        // WIN
         // trigger confetti
+        score += 1
+        document.getElementById('user-score').innerHTML = score
         party.confetti(canvasParent)
+        successSound.play()
         // reset to beginning
         this.y = getHeight() - 50;
       }
@@ -83,15 +101,18 @@ const setupSketch = async () => {
     return height - 25
   }
 
+  const w = window.innerWidth / 1.3
+  const h = window.innerHeight / 1.3
+
   function drawLadder() {
     fill(81, 1, 176);
     const rectWidth = 80
-    rect((window.innerWidth / 2) - rectWidth / 2, 0, 80, window.innerHeight - 90);
+    rect((w / 2) - rectWidth / 2, 0, 80, h - 90);
   }
 
   function drawBackground() {
     noStroke();
-    background(18, 2, 47);
+    background(bg1);
   }
 
   let ball
@@ -99,11 +120,11 @@ const setupSketch = async () => {
   // needs to be defined in window for bundler
   window.setup = () => {
     console.log('setup p5js sketch')
-    var sketchCanvas = createCanvas(window.innerWidth, window.innerHeight - 90);
+    const sketchCanvas = createCanvas(w, h - 90);
     sketchCanvas.parent("main-canvas");
 
     // init ball
-    let x = (window.innerWidth / 2) - (gotchiSize / 2);
+    let x = (w / 2) - (gotchiSize / 2);
     let y = getHeight() - 9;
     ball = new Ball(x, y)
   }
@@ -119,6 +140,7 @@ const setupSketch = async () => {
 
       if (window.gameStateIsInMove()) {
         ball.moveUp()
+        popSound.play()
       }
     }
   }
