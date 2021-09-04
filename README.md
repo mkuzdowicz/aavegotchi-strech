@@ -1,7 +1,8 @@
 # Aavegotchi strech mini game 
 ## (Moralis Aavegotchi Game Jam)
 
-![aavegotchi-moralis-1](https://user-images.githubusercontent.com/86926500/132018421-8752a6be-36ea-41ec-b2ee-5bcee7f8a9be.gif)
+![gotchi-jam-devlog2](https://user-images.githubusercontent.com/86926500/132110272-a570f63c-3a8d-4161-b474-7e1e7043d8d2.gif)
+
 
 ### Supported features so far:
 - It works mainly on `Google Chrome`
