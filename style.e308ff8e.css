@@ -19,7 +19,7 @@ body {
 }
 
 #welcom-bg-container {
-  margin-top: 35vh;
+  margin-top: 15%;
   color: whitesmoke;
 }
 
@@ -72,6 +72,27 @@ body {
 
 #welcom-bg-container h2 {
   color: #FB35F3;
+}
+
+#aavegotchi-preview {
+  max-width: 180px;
+  max-height: 180px;
+}
+
+#gotchi-traits ul li {
+  border: none;
+  background-color: #090215;
+  color: #F0E6FE;
+  text-align: left;
+  word-spacing: 10px;
+}
+
+#gotchi-traits ul {
+  margin-top: 5%;
+}
+
+#previewed-gotchi-section {
+  width: 29%;
 }
 
 
