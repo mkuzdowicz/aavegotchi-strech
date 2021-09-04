@@ -5,7 +5,10 @@
 ### Supported features so far:
 - It works mainly on `Google Chrome`
 - login with `Metamask` by using `Moralis` and display logged-in address
-- load `Aavegotchi SVG` from the file into the game
+- preview `Aavegotchi` from `Aavegotchi` smart contract
+- load `Aavegotchi SVG` from `previewAavegotchi` function in `Aavegotchi` smart contract
+- display info about previewed `Aavegotchi NFT`
+- use `Moralis` Cloud Function
 - Move `Aavegotchi` by stretching your neck (moving your head) thanks to `Tensorflow.js` Face recognition
 
 ### What's Next
