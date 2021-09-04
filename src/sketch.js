@@ -9,7 +9,7 @@ Moralis.initialize(moralisAppID)
 Moralis.serverURL = moralisServerUrl
 
 // fetch and setup player SVG
-const numericTraits = [1, 5, 99, 29, 1, 1]
+const numericTraits = [1, 5, 99, 29, 6, 8]
 const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 const renderTraits = () => {
