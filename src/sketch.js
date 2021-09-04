@@ -60,7 +60,9 @@ const setupPlayerSVG = async () => {
 }
 
 const setupSketch = async () => {
+  console.log('setup sketch start')
   const svgDataUri = await setupPlayerSVG()
+  console.log('svgDataUri fetched')
   const canvasParent = document.getElementById('main-canvas')
 
   let gotchiImg;
@@ -68,7 +70,7 @@ const setupSketch = async () => {
   let graveyardBG, desertBG, forestBG, winterBG;
   let backgrounds;
   let successSound, popSound;
-  const gotchiSize = 150
+  const gotchiSize = 120
 
   const repreviewGotchi = async () => {
     const hat = equippedWearables[0] + 1
@@ -100,7 +102,7 @@ const setupSketch = async () => {
   class Gotchi {
     constructor(x, y) {
       this.x = x
-      this.y = y - gotchiSize + 20
+      this.y = y - gotchiSize + 30
       this.speed = 5.5
     }
 
@@ -117,16 +119,17 @@ const setupSketch = async () => {
         // SCORED!
 
         // update stat
-        window.gameScore += 1
-        window.totalStrechCount += window.strechesInSession
-        window.player.set('score', window.gameScore)
-        window.player.set('total_strech_count', window.totalStrechCount)
-        window.player.save()
+        if (window.player) {
+          window.gameScore += 1
+          window.totalStrechCount += window.strechesInSession
+          window.player.set('score', window.gameScore)
+          window.player.set('total_strech_count', window.totalStrechCount)
+          window.player.save()
 
-        document.getElementById('user-score').innerHTML = window.gameScore
-        document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
-        document.getElementById('total-strech-count').innerHTML = window.totalStrechCount
-
+          document.getElementById('user-score').innerHTML = window.gameScore
+          document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
+          document.getElementById('total-strech-count').innerHTML = window.totalStrechCount
+        }
         // party
         party.confetti(canvasParent)
         successSound.play()
@@ -145,11 +148,11 @@ const setupSketch = async () => {
   }
 
   const w = window.innerWidth / 1.3
-  const h = window.innerHeight / 1.3
+  const h = window.innerHeight / 1.25
 
   function drawLadder() {
     fill(81, 1, 176);
-    const rectWidth = 120
+    const rectWidth = 100
     rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90);
   }
 
@@ -178,13 +181,14 @@ const setupSketch = async () => {
 
     if (window.gameState) {
       gotchi.draw()
-      
+
       if (window.gameStateIsInMove()) {
         gotchi.moveUp()
         popSound.play()
       }
     }
   }
+  console.log('setup sketch finish')
 }
 
 // init sketch

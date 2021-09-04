@@ -39,7 +39,6 @@ window.gameStateIsInMove = () => {
 
 window.gameStateInit()
 
-window.player = {}
 window.gameScore = 0
 window.strechesInSession = 0
 window.totalStrechCount = 0
