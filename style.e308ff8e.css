@@ -33,6 +33,7 @@ body h4, h3, h5, p {
 }
 
 #main-canvas canvas {
+  color: #F0E6FE;
   border: 3px solid hotpink;
 }
 
@@ -43,7 +44,7 @@ body h4, h3, h5, p {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 320px;
+  width: 290px;
 }
 
 #how-to-play {
