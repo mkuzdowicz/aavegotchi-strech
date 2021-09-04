@@ -97,6 +97,7 @@ const setupSketch = async () => {
 
   // p5js fn
   window.preload = () => {
+    console.log('p5js preload')
     loadAssetsFn()
   }
 
@@ -167,13 +168,16 @@ const setupSketch = async () => {
   // needs to be defined in window for bundler
   window.setup = () => {
     console.log('setup p5js sketch')
-    const sketchCanvas = createCanvas(w, h - 90);
+    const sketchCanvas = window.createCanvas(w, h - 90);
     sketchCanvas.parent("main-canvas");
     drawBackground(backgrounds[level]);
     // init gotchi
     let x = (w / 2) - (gotchiSize / 2);
     let y = getHeight() - 9;
     gotchi = new Gotchi(x, y)
+
+    // for debuggin
+    window.setupP5JsDone = true
   }
 
   // needs to be defined in window for bundler
@@ -194,4 +198,12 @@ const setupSketch = async () => {
 
 // init sketch
 setupSketch()
+
+window.setTimeout(
+  () => {
+    if (!window.setupP5JsDone) {
+      alert('something went wrong with fethcin p5js library please refresh the page')
+    }
+  }, 1000
+)
 
