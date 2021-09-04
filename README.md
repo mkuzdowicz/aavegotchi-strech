@@ -20,6 +20,7 @@
 - Move `Aavegotchi` by stretching your neck (moving your head) thanks to `Tensorflow.js` Face recognition
 
 ### What's Next
+- Use `ReactJS` instead of Vanilla `ES6 JavaScript` for better state management
 - improve gameplay (By using `Phaser` instead of `p5.js`)
     - I have an idea for a `vertical floppy bird` like game
     - I think neck streches can be integrated nicelly into that
