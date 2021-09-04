@@ -7,17 +7,22 @@
 ### Supported features so far:
 - It works mainly on `Google Chrome`
 - login with `Metamask` by using `Moralis` and display logged-in address
-- preview `Aavegotchi` from `Aavegotchi` smart contract
-- load `Aavegotchi SVG` from `previewAavegotchi` function in `Aavegotchi` smart contract
-- display info about previewed `Aavegotchi NFT`
-- use `Moralis` Cloud Function
+- user is registered in `Moralis` users tables
+    - storing user `score`, `total strech count` in `Moralis`
+    - next time user log in `score` and `total strech count` will be preserved
+- preview `Aavegotchi` from `Aavegotchi` smart contract with `Moralis`
+    - load `Aavegotchi SVG` from `previewAavegotchi` function in `Aavegotchi` smart contract
+    - display info about previewed `Aavegotchi NFT`
+    - use `Moralis` Cloud Function to `previewAavegotchi`
 - Move `Aavegotchi` by stretching your neck (moving your head) thanks to `Tensorflow.js` Face recognition
 
 ### What's Next
+- improve gameplay (By using `Phaser` instead of `p5.js`)
+    - I have an idea for a `vertical floppy bird` like game
+    - I think nech streches can be integrated nicelly into that
 - load `Aavegotchi SVG` from `NFT`
 - display info about loaded `Aavegotchi NFT`
-- improve gameplay (Use `Phaser`)
-- improve gameplay such that `Aavegotchi NFT` can gain `Experience`
+- `Aavegotchi NFT` will gain `Experience` through gameplay
 
 # Technologies Used
 - Moralis
