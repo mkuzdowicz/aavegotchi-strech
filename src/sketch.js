@@ -30,7 +30,7 @@ const renderTraits = () => {
   const numericTraitsNames = ['⚡️ Energy', '👹 Aggression', '👻 Spookiness', '🧠 Brain size']
   let traits = ''
   numericTraits.slice(0, 4).forEach((_, i) => {
-    traits += `<li class="list-group-item"><span>${numericTraitsNames[i]}</span> <span>${i}</span></li>`
+    traits += `<li class="list-group-item"><span>${numericTraitsNames[i]}</span> <span>${numericTraits[i]}</span></li>`
   })
   gotchiTraitsDiv.innerHTML = `<ul class="list-group">${traits}</ul>`
 }
