@@ -2,10 +2,15 @@ import party from "party-js"
 import * as MoralisSDK from 'moralis'
 
 // bg
-import bg1Path from './vendor/assets/bg/BG.png'
+import graveyardBGPath from './vendor/assets/bg/graveyard.png'
+import desertBGPath from './vendor/assets/bg/desert.png'
+import forestBGPath from './vendor/assets/bg/forest.png'
+import winterBGPath from './vendor/assets/bg/winter.png'
+
 // sounds
 import successSoundPath from './vendor/assets/sounds/success.mp3'
 import popSoundPath from './vendor/assets/sounds/pop.mp4'
+import { async } from "fast-glob"
 
 
 // init moralis
@@ -16,6 +21,7 @@ Moralis.initialize(moralisAppID)
 Moralis.serverURL = moralisServerUrl
 
 // fetch and setup player SVG
+// at index 0 is hat
 const numericTraits = [1, 5, 99, 29, 6, 8]
 const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -23,14 +29,18 @@ const renderTraits = () => {
   const gotchiTraitsDiv = document.getElementById('gotchi-traits')
   const numericTraitsNames = ['⚡️ Energy', '👹 Aggression', '👻 Spookiness', '🧠 Brain size']
   let traits = ''
-  const numericTraitsMap = numericTraits.slice(0, 4).forEach((_, i) => {
+  numericTraits.slice(0, 4).forEach((_, i) => {
     traits += `<li class="list-group-item"><span>${numericTraitsNames[i]}</span> <span>${i}</span></li>`
   })
   gotchiTraitsDiv.innerHTML = `<ul class="list-group">${traits}</ul>`
 }
 
-const setupPlayerSVG = async () => {
-  const rawSVG = await Moralis.Cloud.run("getSVG", { numericTraits: numericTraits, equippedWearables: equippedWearables })
+const getGotchiSVG = async (wearables) => {
+  const rawSVG = await Moralis.Cloud.
+    run("getSVG", {
+      numericTraits: numericTraits,
+      equippedWearables: wearables
+    })
   const removeBG = (svg) => {
     const styledSvg = svg.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
     return styledSvg;
@@ -38,7 +48,11 @@ const setupPlayerSVG = async () => {
   const rawSVGNoBG = removeBG(rawSVG)
   const svgStrBase64 = window.btoa(rawSVGNoBG)
   const svgDataUri = `data:image/svg+xml;base64,${svgStrBase64}`
+  return svgDataUri
+}
 
+const setupPlayerSVG = async () => {
+  const svgDataUri = await getGotchiSVG(equippedWearables)
   const aavegotchiPreview = document.getElementById('aavegotchi-preview')
   aavegotchiPreview.src = svgDataUri
   renderTraits()
@@ -51,32 +65,49 @@ const setupSketch = async () => {
   const svgDataUri = await setupPlayerSVG()
   const canvasParent = document.getElementById('main-canvas')
 
-  let img, bg1;
+  let gotchiImg;
+  let level = 0
+  let graveyardBG, desertBG, forestBG, winterBG;
+  let backgrounds;
   let successSound, popSound;
   const gotchiSize = 80
 
-  const loadImgFn = () => {
-    img = window.loadImage(svgDataUri)
-    bg1 = window.loadImage(bg1Path)
+  const repreviewGotchi = async () => {
+    const hat = equippedWearables[0] + 1
+    equippedWearables[0] = hat
+    const svgDataUri = await getGotchiSVG(equippedWearables)
+    gotchiImg = window.loadImage(svgDataUri)
+  }
+
+  const loadAssetsFn = () => {
+    gotchiImg = window.loadImage(svgDataUri)
+
     successSound = new Audio(successSoundPath)
     successSound.volume = 0.5
     popSound = new Audio(popSoundPath)
     popSound.volume = 0.2
+
+    graveyardBG = window.loadImage(graveyardBGPath)
+
+    desertBG = window.loadImage(desertBGPath)
+    forestBG = window.loadImage(forestBGPath)
+    winterBG = window.loadImage(winterBGPath)
+    backgrounds = [graveyardBG, desertBG, forestBG, winterBG]
   }
 
   window.preload = () => {
-    loadImgFn()
+    loadAssetsFn()
   }
 
   class Gotchi {
     constructor(x, y) {
       this.x = x
       this.y = y - 50
-      this.speed = 3
+      this.speed = 5.5
     }
 
     draw() {
-      image(img, this.x, this.y, gotchiSize, gotchiSize)
+      image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize)
     }
 
     moveUp() {
@@ -88,11 +119,15 @@ const setupSketch = async () => {
         // WIN
         // trigger confetti
         score += 1
+        level = (level + 1) % backgrounds.length
         document.getElementById('user-score').innerHTML = score
         party.confetti(canvasParent)
         successSound.play()
+        // new bg
+        drawBackground(backgrounds[level]);
         // reset to beginning
         this.y = getHeight() - 50;
+        repreviewGotchi()
       }
     }
   }
@@ -110,9 +145,9 @@ const setupSketch = async () => {
     rect((w / 2) - rectWidth / 2, 0, 80, h - 90);
   }
 
-  function drawBackground() {
+  function drawBackground(bg) {
     noStroke();
-    background(bg1);
+    background(bg);
   }
 
   let gotchi
@@ -122,7 +157,7 @@ const setupSketch = async () => {
     console.log('setup p5js sketch')
     const sketchCanvas = createCanvas(w, h - 90);
     sketchCanvas.parent("main-canvas");
-
+    drawBackground(backgrounds[level]);
     // init gotchi
     let x = (w / 2) - (gotchiSize / 2);
     let y = getHeight() - 9;
@@ -131,8 +166,6 @@ const setupSketch = async () => {
 
   // needs to be defined in window for bundler
   window.draw = () => {
-    drawBackground()
-
     drawLadder()
 
     if (window.gameState) {

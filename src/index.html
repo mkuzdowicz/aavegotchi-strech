@@ -35,7 +35,13 @@
     </div>
   </nav>
   <div class="container-fluid" id="score-info">
+    <p class="float-end" id="use-chrome">
+      please use Google Chrome&nbsp
+      <img id="chrome-icon" src="vendor/icon/chrome_icon.svg" />
+    </p>
     <h4>score: <span id="user-score">0</span></h4>
+    <p>after every new score</p> 
+    <p>your previewed gotchi will have a new werable</p>
   </div>
   <div id="welcom-bg" class="container-fluid">
     <div id="welcom-bg-container" class="text-center">
@@ -67,7 +73,7 @@
   </div>
   <div style="display: none !important;" id="main-canvas" class="d-flex justify-content-center"></div>
   <video id="video" autoplay playsinline muted style="display: none;"></video>
-  <canvas style="display: none;" id="video-output" class="bottom-right"></canvas>
+  <canvas style="display: none;" id="video-output" class="webcam-position"></canvas>
   <script src="game-state.js"></script>
   <script src="sketch.js"></script>
   <script src="index.js"></script>
