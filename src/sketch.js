@@ -68,7 +68,7 @@ const setupSketch = async () => {
   let graveyardBG, desertBG, forestBG, winterBG;
   let backgrounds;
   let successSound, popSound;
-  const gotchiSize = 120
+  const gotchiSize = 90
 
   const repreviewGotchi = async () => {
     const hat = equippedWearables[0] + 1
@@ -152,7 +152,7 @@ const setupSketch = async () => {
 
   function drawLadder() {
     window.fill(81, 1, 176); // p5js fn
-    const rectWidth = 100
+    const rectWidth = 90
     window.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90); // p5js fn
   }
 
