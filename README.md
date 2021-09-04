@@ -30,11 +30,13 @@
 - Tensorflow.js
 - p5.js
 - Parcel Bundler
-
+- Vanilla ES6 JavaScript
+- Bootstrap
 
 # Running locally
 
 ```shel
 npm install
 npm run start
+# open localhost:1234
 ```
