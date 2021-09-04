@@ -68,7 +68,7 @@ const setupSketch = async () => {
     loadImgFn()
   }
 
-  class Ball {
+  class Gotchi {
     constructor(x, y) {
       this.x = x
       this.y = y - 50
@@ -115,7 +115,7 @@ const setupSketch = async () => {
     background(bg1);
   }
 
-  let ball
+  let gotchi
 
   // needs to be defined in window for bundler
   window.setup = () => {
@@ -123,10 +123,10 @@ const setupSketch = async () => {
     const sketchCanvas = createCanvas(w, h - 90);
     sketchCanvas.parent("main-canvas");
 
-    // init ball
+    // init gotchi
     let x = (w / 2) - (gotchiSize / 2);
     let y = getHeight() - 9;
-    ball = new Ball(x, y)
+    gotchi = new Gotchi(x, y)
   }
 
   // needs to be defined in window for bundler
@@ -136,10 +136,10 @@ const setupSketch = async () => {
     drawLadder()
 
     if (window.gameState) {
-      ball.draw()
+      gotchi.draw()
 
       if (window.gameStateIsInMove()) {
-        ball.moveUp()
+        gotchi.moveUp()
         popSound.play()
       }
     }
