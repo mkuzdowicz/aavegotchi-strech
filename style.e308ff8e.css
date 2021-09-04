@@ -3,7 +3,7 @@ body {
   background-color: #090215;
 }
 
-body h4 {
+body h4, p {
   color: whitesmoke;
 }
 
@@ -29,19 +29,21 @@ body h4 {
 }
 
 #main-canvas {
-  margin-top: 8vh;
+  margin-top: 3vh;
 }
 
 #main-canvas canvas {
   border: 3px solid hotpink;
 }
 
-.bottom-right {
+.webcam-position {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 20%;
-  height: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
 }
 
 #how-to-play {
@@ -114,5 +116,14 @@ body h4 {
   color: chocolate;
 }
 
+#chrome-icon {
+  width: 30px;
+  height: 30px;
+  display: inline;
+}
+
+#score-info {
+  margin-top: 1vh;
+}
 
 /*# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/style.e308ff8e.css.map */
