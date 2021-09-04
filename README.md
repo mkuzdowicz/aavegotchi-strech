@@ -19,6 +19,8 @@
 - improve gameplay such that `Aavegotchi NFT` can gain `Experience`
 
 # Technologies Used
+- Moralis
+- Aavegotchi
 - Tensorflow.js
 - p5.js
 - Parcel Bundler
