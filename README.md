@@ -1,4 +1,4 @@
-# Aavegotchi strech mini game 
+# Aavegotchi Strech Mini Game 
 ## (Moralis Aavegotchi Game Jam)
 
 ![gotchi-jam-devlog2](https://user-images.githubusercontent.com/86926500/132110272-a570f63c-3a8d-4161-b474-7e1e7043d8d2.gif)
