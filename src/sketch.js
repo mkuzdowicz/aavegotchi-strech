@@ -9,9 +9,20 @@ Moralis.initialize(moralisAppID)
 Moralis.serverURL = moralisServerUrl
 
 // fetch and setup player SVG
+const numericTraits = [1, 5, 99, 29, 1, 1]
+const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+const renderTraits = () => {
+  const gotchiTraitsDiv = document.getElementById('gotchi-traits')
+  const numericTraitsNames = ['⚡️ Energy', '👹 Aggression', '👻 Spookiness', '🧠 Brain size']
+  let traits = ''
+  const numericTraitsMap = numericTraits.slice(0, 4).forEach((_, i) => {
+    traits += `<li class="list-group-item"><span>${numericTraitsNames[i]}</span> <span>${i}</span></li>`
+  })
+  gotchiTraitsDiv.innerHTML = `<ul class="list-group">${traits}</ul>`
+}
+
 const setupPlayerSVG = async () => {
-  const numericTraits = [1, 5, 99, 29, 1, 1]
-  const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   const rawSVG = await Moralis.Cloud.run("getSVG", { numericTraits: numericTraits, equippedWearables: equippedWearables })
   const removeBG = (svg) => {
     const styledSvg = svg.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
@@ -23,6 +34,7 @@ const setupPlayerSVG = async () => {
 
   const aavegotchiPreview = document.getElementById('aavegotchi-preview')
   aavegotchiPreview.src = svgDataUri
+  renderTraits()
   return svgDataUri
 }
 

@@ -75,6 +75,22 @@ body {
 }
 
 #aavegotchi-preview {
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 180px;
+  max-height: 180px;
+}
+
+#gotchi-traits ul li {
+  border: none;
+  background-color: #090215;
+  color: #F0E6FE;
+  text-align: left;
+  word-spacing: 10px;
+}
+
+#gotchi-traits ul {
+  margin-top: 5%;
+}
+
+#previewed-gotchi-section {
+  width: 29%;
 }
