@@ -26,7 +26,7 @@
     <div class="container-fluid">
       <div id="nav-text" class="float-start">
         <h4>Aavegotchi Strech MiniGame</h4>
-        <p>strech 💪&nbsp your neck and move the gotchi 🆙</p>
+        <p>strech 💪&nbsp your neck <span id="title-and">AND </span><span id="title-move">move the gotchi 🆙</span></p>
       </div>
       <div class="float-end btn-group-vertical" role="group">
         <button id="connect-wallet" class="btn">Connect Wallet</button>
@@ -34,6 +34,9 @@
       </div>
     </div>
   </nav>
+  <div class="container-fluid" id="score-info">
+    <h4>score: <span id="user-score">0</span></h4>
+  </div>
   <div id="welcom-bg" class="container-fluid">
     <div id="welcom-bg-container" class="text-center">
       <h4>Your Previewed Aavegotchi (0000):</h4>
@@ -61,7 +64,7 @@
       <i class="fab fa-youtube"></i>
     </a>
   </div>
-  <div style="display: none;" id="main-canvas"></div>
+  <div style="display: none !important;" id="main-canvas" class="d-flex justify-content-center"></div>
   <video id="video" autoplay="" playsinline="" muted="" style="display: none;"></video>
   <canvas style="display: none;" id="video-output" class="bottom-right"></canvas>
   <script src="https://coderdidit.com/aavegotchi-strech/game-state.c415ee40.js"></script>
