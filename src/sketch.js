@@ -10,8 +10,6 @@ import winterBGPath from './vendor/assets/bg/winter.png'
 // sounds
 import successSoundPath from './vendor/assets/sounds/success.mp3'
 import popSoundPath from './vendor/assets/sounds/pop.mp4'
-import { async } from "fast-glob"
-
 
 // init moralis
 const moralisAppID = process.env.MORALIS_APPLICATION_ID || ''
