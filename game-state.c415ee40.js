@@ -121,24 +121,49 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var play = "play";
 var move = "move";
 var stop = "stop";
+var prevState = stop;
+var lastTimeChangeToStop = Date.now();
 
 window.gameStateInit = function () {
   window.gameState = stop;
 };
 
 window.gameStateMove = function () {
+  prevState = window.gameState;
   window.gameState = move;
 };
 
 window.gameStateStop = function () {
+  prevState = window.gameState;
+
+  if (prevState == move) {
+    lastTimeChangeToStop = Date.now();
+  }
+
   window.gameState = stop;
 };
 
 window.gameStateIsInMove = function () {
+  if (prevState == stop && window.gameState == move) {
+    var now = Date.now();
+    var timeDiff = (now - lastTimeChangeToStop) / 1000; // if first time just increment
+    // otherwise do not increment if it was flickering
+
+    if (window.strechesInSession == 0) {
+      window.strechesInSession = window.strechesInSession + 1;
+    } else if (timeDiff >= 0.5) {
+      window.strechesInSession = window.strechesInSession + 1;
+    }
+  }
+
   return window.gameState == move;
 };
 
 window.gameStateInit();
+window.player = {};
+window.gameScore = 0;
+window.strechesInSession = 0;
+window.totalStrechCount = 0;
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -167,7 +192,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63425" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56120" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
