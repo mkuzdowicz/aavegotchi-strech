@@ -53,6 +53,12 @@ body h4, h3, h5, p {
   left: 0;
 }
 
+#newsletter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
 #find-me-on-yt {
   background-color: #ed302f;
 }
