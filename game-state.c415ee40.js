@@ -174,7 +174,7 @@ function updatePlayerStats() {
   window.gameScore += 1;
   window.totalStrechCount += window.strechesInSession;
 
-  if (window.player) {
+  if (window.player && window.player.set) {
     window.player.set('score', window.gameScore);
     window.player.set('total_strech_count', window.totalStrechCount);
     window.player.save();
@@ -212,7 +212,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61545" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63329" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
