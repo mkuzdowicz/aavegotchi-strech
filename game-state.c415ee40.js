@@ -118,6 +118,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"game-state.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = updatePlayerStats;
 var play = "play";
 var move = "move";
 var stop = "stop";
@@ -163,6 +169,21 @@ window.gameStateInit();
 window.gameScore = 0;
 window.strechesInSession = 0;
 window.totalStrechCount = 0;
+
+function updatePlayerStats() {
+  window.gameScore += 1;
+  window.totalStrechCount += window.strechesInSession;
+
+  if (window.player) {
+    window.player.set('score', window.gameScore);
+    window.player.set('total_strech_count', window.totalStrechCount);
+    window.player.save();
+  }
+
+  document.getElementById('user-score').innerHTML = window.gameScore;
+  document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession;
+  document.getElementById('total-strech-count').innerHTML = window.totalStrechCount;
+}
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -191,7 +212,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55578" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61545" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
