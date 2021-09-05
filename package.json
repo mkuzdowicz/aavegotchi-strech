@@ -21,6 +21,7 @@
     "@tensorflow/tfjs-converter": "^3.7.0",
     "@tensorflow/tfjs-core": "^3.7.0",
     "moralis": "^0.0.41",
+    "p5": "^1.4.0",
     "parcel-bundler": "^1.12.5",
     "party-js": "^2.0.1"
   },

@@ -1,5 +1,6 @@
 import party from "party-js"
 import * as MoralisSDK from 'moralis'
+import updatePlayerStats from './game-state'
 
 // bg
 import graveyardBGPath from './vendor/assets/bg/graveyard.png'
@@ -10,6 +11,9 @@ import winterBGPath from './vendor/assets/bg/winter.png'
 // sounds
 import successSoundPath from './vendor/assets/sounds/success.mp3'
 import popSoundPath from './vendor/assets/sounds/pop.mp4'
+
+// p5
+import p5 from 'p5';
 
 // init moralis
 const moralisAppID = process.env.MORALIS_APPLICATION_ID || ''
@@ -57,151 +61,129 @@ const setupPlayerSVG = async () => {
   return svgDataUri
 }
 
-const setupSketch = async () => {
-  console.log('setup sketch start')
+const initSketch = async () => {
   const svgDataUri = await setupPlayerSVG()
-  console.log('svgDataUri fetched')
   const canvasParent = document.getElementById('main-canvas')
 
-  let gotchiImg;
-  let level = 0
-  let graveyardBG, desertBG, forestBG, winterBG;
-  let backgrounds;
-  let successSound, popSound;
-  const gotchiSize = 90
+  const sketch = async (s) => {
+    const w = window.innerWidth / 1.3
+    const h = window.innerHeight / 1.25
+    const gotchiSize = 90
 
-  const repreviewGotchi = async () => {
-    const hat = equippedWearables[0] + 1
-    equippedWearables[0] = hat
-    const svgDataUri = await getGotchiSVG(equippedWearables)
-    gotchiImg = window.loadImage(svgDataUri)
-  }
-
-  const loadAssetsFn = () => {
-    gotchiImg = window.loadImage(svgDataUri) // p5js fn
-
-    successSound = new Audio(successSoundPath)
-    successSound.volume = 0.5
-    popSound = new Audio(popSoundPath)
-    popSound.volume = 0.2
-
-    graveyardBG = window.loadImage(graveyardBGPath) // p5js fn
-
-    desertBG = window.loadImage(desertBGPath) // p5js fn
-    forestBG = window.loadImage(forestBGPath) // p5js fn
-    winterBG = window.loadImage(winterBGPath) // p5js fn
-    backgrounds = [graveyardBG, desertBG, forestBG, winterBG]
-  }
-
-  // p5js fn
-  window.preload = () => {
-    console.log('p5js preload')
-    loadAssetsFn()
-  }
-
-  class Gotchi {
-    constructor(x, y) {
-      this.x = x
-      this.y = y - gotchiSize + 30
-      this.speed = 5.5
+    let gotchiImg;
+    let level = 0
+    let graveyardBG, desertBG, forestBG, winterBG, backgrounds;
+    let successSound, popSound;
+  
+    const rePreviewGotchi = async () => {
+      const hat = equippedWearables[0] + 1
+      equippedWearables[0] = hat
+      const svgDataUri = await getGotchiSVG(equippedWearables)
+      gotchiImg = s.loadImage(svgDataUri)
     }
 
-    draw() {
-      window.image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize) // p5js fn
+    const loadAssetsFn = () => {
+      gotchiImg = s.loadImage(svgDataUri) // p5js fn
+      successSound = new Audio(successSoundPath)
+      successSound.volume = 0.5
+      popSound = new Audio(popSoundPath)
+      popSound.volume = 0.2
+      graveyardBG = s.loadImage(graveyardBGPath) // p5js fn
+      desertBG = s.loadImage(desertBGPath) // p5js fn
+      forestBG = s.loadImage(forestBGPath) // p5js fn
+      winterBG = s.loadImage(winterBGPath) // p5js fn
+      backgrounds = [graveyardBG, desertBG, forestBG, winterBG]
     }
 
-    moveUp() {
-      // Moving up at a constant speed
-      this.y -= this.speed
-      // Reset to the bottom
-      // if top was reached
-      if (this.y < 0) {
-        // SCORED!
+    const drawBackground = (bg) => {
+      s.noStroke();
+      s.background(bg);
+    }
 
-        // update stat
-        if (window.player) {
-          window.gameScore += 1
-          window.totalStrechCount += window.strechesInSession
-          window.player.set('score', window.gameScore)
-          window.player.set('total_strech_count', window.totalStrechCount)
-          window.player.save()
+    const getHeight = () => s.height - 25
 
-          document.getElementById('user-score').innerHTML = window.gameScore
-          document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
-          document.getElementById('total-strech-count').innerHTML = window.totalStrechCount
+    class Gotchi {
+      constructor(x, y) {
+        this.x = x
+        this.y = y - gotchiSize + 30
+        this.speed = 5.5
+      }
+
+      draw() {
+        s.image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize) // p5js fn
+      }
+
+      moveUp() {
+        // Moving up at a constant speed
+        this.y -= this.speed
+        // if top was reached
+        if (this.y < 0) {
+          // if top was reached
+          // SCORED!
+          updatePlayerStats()
+          // party
+          party.confetti(canvasParent)
+          successSound.play()
+          // change background
+          level = (level + 1) % backgrounds.length
+          drawBackground(backgrounds[level]);
+          // reset gotchi position to beginning
+          this.y = getHeight() - gotchiSize + 10;
+          rePreviewGotchi()
         }
-        // party
-        party.confetti(canvasParent)
-        successSound.play()
-        // change background
-        level = (level + 1) % backgrounds.length
-        drawBackground(backgrounds[level]);
-        // reset gotchi position to beginning
-        this.y = getHeight() - gotchiSize + 10;
-        repreviewGotchi()
+      }
+    }
+
+    const drawLadder = () => {
+      s.fill(81, 1, 176); // p5js fn
+      const rectWidth = 90
+      s.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90); // p5js fn
+    }
+    
+    s.preload = () => {
+      console.log('p5js preload')
+      loadAssetsFn()
+    }
+
+    let gotchi;
+    s.setup = () => {
+      console.log('setup p5js sketch')
+      const sketchCanvas = s.createCanvas(w, h - 90);
+      sketchCanvas.parent("main-canvas");
+      drawBackground(backgrounds[level]);
+
+      // init gotchi
+      let gx = (w / 2) - (gotchiSize / 2);
+      let gy = getHeight() - 9;
+      gotchi = new Gotchi(gx, gy)
+
+      // for debuggin and alerting
+      window.setupP5JsDone = true
+    }
+
+    s.draw = () => {
+      drawLadder()
+      if (window.gameState) {
+        gotchi.draw()
+        if (window.gameStateIsInMove()) {
+          gotchi.moveUp()
+          popSound.play()
+        }
       }
     }
   }
 
-  function getHeight() {
-    return height - 25
-  }
-
-  const w = window.innerWidth / 1.3
-  const h = window.innerHeight / 1.25
-
-  function drawLadder() {
-    window.fill(81, 1, 176); // p5js fn
-    const rectWidth = 90
-    window.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90); // p5js fn
-  }
-
-  function drawBackground(bg) {
-    window.noStroke();
-    window.background(bg);
-  }
-
-  let gotchi;
-
-  // needs to be defined in window for bundler
-  window.setup = () => {
-    console.log('setup p5js sketch')
-    const sketchCanvas = window.createCanvas(w, h - 90);
-    sketchCanvas.parent("main-canvas");
-    drawBackground(backgrounds[level]);
-    // init gotchi
-    let x = (w / 2) - (gotchiSize / 2);
-    let y = getHeight() - 9;
-    gotchi = new Gotchi(x, y)
-
-    // for debuggin
-    window.setupP5JsDone = true
-  }
-
-  // needs to be defined in window for bundler
-  window.draw = () => {
-    drawLadder()
-
-    if (window.gameState) {
-      gotchi.draw()
-
-      if (window.gameStateIsInMove()) {
-        gotchi.moveUp()
-        popSound.play()
-      }
-    }
-  }
-  console.log('setup sketch finish')
+  const sketchInstance = new p5(sketch);
 }
 
 // init sketch
-setupSketch()
+initSketch()
 
 window.setTimeout(
   () => {
     if (!window.setupP5JsDone) {
-      alert('something went wrong with fethcin p5js library please refresh the page')
+      alert('something went wrong with fetching p5js library please refresh the page')
     }
-  }, 1000
+  }, 3000
 )
 

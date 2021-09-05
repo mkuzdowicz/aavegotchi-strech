@@ -42,3 +42,16 @@ window.gameStateInit()
 window.gameScore = 0
 window.strechesInSession = 0
 window.totalStrechCount = 0
+
+export default function updatePlayerStats() {
+    window.gameScore += 1
+    window.totalStrechCount += window.strechesInSession
+    if (window.player) {
+        window.player.set('score', window.gameScore)
+        window.player.set('total_strech_count', window.totalStrechCount)
+        window.player.save()
+    }
+    document.getElementById('user-score').innerHTML = window.gameScore
+    document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
+    document.getElementById('total-strech-count').innerHTML = window.totalStrechCount
+}
