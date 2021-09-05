@@ -5,71 +5,13 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 import getAnglesBetween from './angles';
-import * as MoralisSDK from 'moralis'
+import * as moralis from './moralis-wrapper'
 
-const updateUserStatsView = () => {
-    const player = window.player
-    const score =  player.get && player.get('score') ? player.get('score') : 0
-    const totalStrechCount =  player.get && player.get('total_strech_count') ? player.get('total_strech_count') : 0
-    window.gameScore = score
-    window.totalStrechCount = totalStrechCount
-    document.getElementById('user-score').innerHTML = window.gameScore
-    document.getElementById('total-strech-count').innerHTML = window.totalStrechCount
-}
-
-// init moralis
-const moralisAppID = process.env.MORALIS_APPLICATION_ID || ''
-const moralisServerUrl = process.env.MORALIS_SERVER_URL || ''
-const connectWalletBtn = document.getElementById('connect-wallet')
-
-const Moralis = MoralisSDK.default
-Moralis.initialize(moralisAppID)
-Moralis.serverURL = moralisServerUrl
-
-const ethAddressEllipsis = (str) => {
-    if (str.length > 15) {
-      return str.substr(0, 5) + '...' + str.substr(str.length-5, str.length);
-    }
-    return str;
-  }
-
-const initWeb3 = async () => {
-    window.web3 = await Moralis.Web3.enable()
-    const user = await Moralis.User.current()
-    if (user) {
-        const userEthAddress = user.get('ethAddress')
-        window.player = user
-        connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
-        updateUserStatsView()
-    }
-}
-
-
-const login = async () => {
-    await Moralis.Web3.authenticate()
-
-    const user = await Moralis.User.current()
-    window.player = user
-    const userEthAddress = user.get('ethAddress')
-    console.log('user ethAddress after login', userEthAddress)
-    connectWalletBtn.innerHTML = ethAddressEllipsis(userEthAddress)
-    updateUserStatsView()
-}
-
-const logoutBtn = document.getElementById('logout')
-const logout = async () => {
-    await Moralis.User.logOut()
-    console.log('current user logout')
-    connectWalletBtn.innerHTML = 'Connect Wallet'
-    window.player = {}
-    updateUserStatsView()
-}
-logoutBtn.onclick = logout
-
-connectWalletBtn.onclick = login
-
-initWeb3()
-// finish Moralis
+// Moralis related stuff
+document.getElementById('logout').onclick = moralis.logout
+document.getElementById('connect-wallet').onclick = moralis.login
+moralis.initWeb3()
+// finish Moralis related stuff
 
 // TODO wasm is much faster investigate why
 // + vendor the dist

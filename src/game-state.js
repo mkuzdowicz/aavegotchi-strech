@@ -46,7 +46,7 @@ window.totalStrechCount = 0
 export default function updatePlayerStats() {
     window.gameScore += 1
     window.totalStrechCount += window.strechesInSession
-    if (window.player) {
+    if (window.player && window.player.set) {
         window.player.set('score', window.gameScore)
         window.player.set('total_strech_count', window.totalStrechCount)
         window.player.save()

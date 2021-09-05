@@ -1,6 +1,6 @@
 import party from "party-js"
-import * as MoralisSDK from 'moralis'
 import updatePlayerStats from './game-state'
+import * as moralis from './moralis-wrapper'
 
 // bg
 import graveyardBGPath from './vendor/assets/bg/graveyard.png'
@@ -15,16 +15,8 @@ import popSoundPath from './vendor/assets/sounds/pop.mp4'
 // p5
 import p5 from 'p5';
 
-// init moralis
-const moralisAppID = process.env.MORALIS_APPLICATION_ID || ''
-const moralisServerUrl = process.env.MORALIS_SERVER_URL || ''
-const Moralis = MoralisSDK.default
-Moralis.initialize(moralisAppID)
-Moralis.serverURL = moralisServerUrl
-
-// fetch and setup player SVG
-// at index 0 is hat
-const numericTraits = [1, 5, 99, 29, 6, 8]
+// fetch and setup player SVG (previewed Aavegotchi)
+const numericTraits = [1, 5, 99, 29, 6, 8] // at index 0 is hat
 const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 const renderTraits = () => {
@@ -37,24 +29,8 @@ const renderTraits = () => {
   gotchiTraitsDiv.innerHTML = `<ul class="list-group">${traits}</ul>`
 }
 
-const getGotchiSVG = async (wearables) => {
-  const rawSVG = await Moralis.Cloud.
-    run("getSVG", {
-      numericTraits: numericTraits,
-      equippedWearables: wearables
-    })
-  const removeBG = (svg) => {
-    const styledSvg = svg.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
-    return styledSvg;
-  };
-  const rawSVGNoBG = removeBG(rawSVG)
-  const svgStrBase64 = window.btoa(rawSVGNoBG)
-  const svgDataUri = `data:image/svg+xml;base64,${svgStrBase64}`
-  return svgDataUri
-}
-
 const setupPlayerSVG = async () => {
-  const svgDataUri = await getGotchiSVG(equippedWearables)
+  const svgDataUri = await moralis.getGotchiSVG(equippedWearables, numericTraits)
   const aavegotchiPreview = document.getElementById('aavegotchi-preview')
   aavegotchiPreview.src = svgDataUri
   renderTraits()
@@ -78,20 +54,20 @@ const initSketch = async () => {
     const rePreviewGotchi = async () => {
       const hat = equippedWearables[0] + 1
       equippedWearables[0] = hat
-      const svgDataUri = await getGotchiSVG(equippedWearables)
+      const svgDataUri = await moralis.getGotchiSVG(equippedWearables, numericTraits)
       gotchiImg = s.loadImage(svgDataUri)
     }
 
     const loadAssetsFn = () => {
-      gotchiImg = s.loadImage(svgDataUri) // p5js fn
+      gotchiImg = s.loadImage(svgDataUri)
       successSound = new Audio(successSoundPath)
       successSound.volume = 0.5
       popSound = new Audio(popSoundPath)
       popSound.volume = 0.2
-      graveyardBG = s.loadImage(graveyardBGPath) // p5js fn
-      desertBG = s.loadImage(desertBGPath) // p5js fn
-      forestBG = s.loadImage(forestBGPath) // p5js fn
-      winterBG = s.loadImage(winterBGPath) // p5js fn
+      graveyardBG = s.loadImage(graveyardBGPath)
+      desertBG = s.loadImage(desertBGPath)
+      forestBG = s.loadImage(forestBGPath)
+      winterBG = s.loadImage(winterBGPath)
       backgrounds = [graveyardBG, desertBG, forestBG, winterBG]
     }
 
@@ -110,7 +86,7 @@ const initSketch = async () => {
       }
 
       draw() {
-        s.image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize) // p5js fn
+        s.image(gotchiImg, this.x, this.y, gotchiSize, gotchiSize)
       }
 
       moveUp() {
@@ -135,9 +111,9 @@ const initSketch = async () => {
     }
 
     const drawLadder = () => {
-      s.fill(81, 1, 176); // p5js fn
+      s.fill(81, 1, 176);
       const rectWidth = 90
-      s.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90); // p5js fn
+      s.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90);
     }
     
     s.preload = () => {
