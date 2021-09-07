@@ -44,7 +44,7 @@ body h4, h3, h5, p {
 
 @media all and (max-width: 450px) {
   :root {
-    --webcam-width: 45vw;
+    --webcam-width: 35vw;
   }
 }
 
