@@ -42,7 +42,10 @@ const initSketch = async () => {
   const canvasParent = document.getElementById('main-canvas')
 
   const sketch = async (s) => {
-    const w = window.innerWidth / 1.3
+    // for making bigger on mobile
+    const scaleSketch = window.innerWidth > 450
+    console.log('scaleSketch', scaleSketch)
+    const w = scaleSketch ? window.innerWidth / 1.3 : window.innerWidth
     const h = window.innerHeight / 1.25
     const gotchiSize = 90
 
