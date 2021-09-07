@@ -32,36 +32,45 @@
   <nav id="main-nav" class="navbar">
     <div class="container-fluid">
       <div id="nav-text" class="float-start">
-        <h4>Aavegotchi Strech MiniGame</h4>
-        <p>strech 💪&nbsp your neck <span id="title-and">AND </span><span id="title-move">move the gotchi 🆙</span></p>
+        <h5>Aavegotchi Strech</h5>
+        <p>strech 💪&nbsp your neck </p>
+        <p><span id="title-and">AND </span>
+          <span id="title-move">move the gotchi 🆙</span>
+        </p>
       </div>
       <div class="float-end btn-group-vertical" role="group">
-        <button id="connect-wallet" class="btn">Connect Wallet</button>
-        <button id="logout" class="btn btn-outline-danger">logout</button>
+        <button id="connect-wallet" class="btn btn-sm">Connect Wallet</button>
+        <button id="logout" class="btn btn-sm btn-outline-danger">logout</button>
       </div>
     </div>
   </nav>
   <div class="container-fluid" id="score-info">
-    <p class="float-end" id="use-chrome">
-      please use Google Chrome&nbsp
+    <span class="float-end" id="use-chrome">
+      works on&nbsp
       <img id="chrome-icon" src="vendor/icon/chrome_icon.svg" />
-    </p>
-    <h5>
-      levels scored: <span id="user-score" class="stats-num">0</span>
-    </h5>
-    <p>
-      strech count in this session: <span class="stats-num" id="strech-count-in-session">0</span>
-      , total strech count: <span class="stats-num" id="total-strech-count">0</span>
-    </p>
-    <p style="color: chocolate;">
-      After Scored Level, Your Previewed Gotchi will have a new Wearable 👕
-    </p>
+    </span>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">scored</th>
+          <th scope="col">streches</th>
+          <th scope="col">total streches</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span id="user-score" class="stats-num">0</span></td>
+          <td><span class="stats-num" id="strech-count-in-session">0</span></td>
+          <td><span class="stats-num" id="total-strech-count">0</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div id="welcom-bg" class="container-fluid">
     <div id="welcom-bg-container" class="text-center">
       <h4>Your Previewed Aavegotchi (0000):</h4>
       <div id="previewed-gotchi-section" class="container-fluid">
-        <div class="row">
+        <div class="row row-cols-2">
           <div class="col">
             <img id="aavegotchi-preview" />
           </div>
@@ -73,10 +82,9 @@
       <button id="play-btn" type="button" class="btn btn-outline-danger btn-lg align-self-center">play 🎮</button>
       <br>
       <br>
-      <h2>you will need to allow acces to your webcam/camera 📷</h2>
-      <h4>~\(^o^)/~</h4>
-      <p>Connect with Metamask to keep your score</p>
-      <p>Between gameplays</p>
+      <h5>you will need to allow acces to your webcam/camera 📷</h5>
+      <h5 class="pxl-art">~\(^o^)/~</h5>
+      <p>Connect with Metamask to keep your scores</p>
     </div>
   </div>
   <!-- Youtube -->
