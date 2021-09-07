@@ -36,6 +36,18 @@ body h4, h3, h5, p {
   border: 3px solid hotpink;
 }
 
+@media all and (min-width: 450px) {
+  :root {
+    --webcam-width: 18vw;
+  }
+}
+
+@media all and (max-width: 450px) {
+  :root {
+    --webcam-width: 55vw;
+  }
+}
+
 .webcam-position {
   position: absolute;
   top: 0;
@@ -43,7 +55,7 @@ body h4, h3, h5, p {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 18rem;
+  width: var(--webcam-width);
 }
 
 #how-to-play {
