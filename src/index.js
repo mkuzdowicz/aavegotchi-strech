@@ -10,12 +10,8 @@ import * as moralis from './moralis-wrapper'
 // Moralis related stuff
 document.getElementById('logout').onclick = moralis.logout
 document.getElementById('connect-wallet').onclick = moralis.login
+moralis.initWeb3()
 
-try {
-    moralis.initWeb3()
-} catch (error) {
-    console.log('initWeb3 error')
-}
 // finish Moralis related stuff
 
 // TODO wasm is much faster investigate why
