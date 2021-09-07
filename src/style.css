@@ -132,3 +132,14 @@ body h4, h3, h5, p {
 #score-info {
   margin-top: 1vh;
 }
+
+#previewed-gotchi-section {
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+#previewed-gotchi-section .row .col:nth-child(1) {
+  text-align: right;
+  padding-top: 1.6%;
+}
