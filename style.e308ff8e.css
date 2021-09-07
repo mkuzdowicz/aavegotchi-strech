@@ -27,10 +27,6 @@ body h4, h3, h5, p {
   color: whitesmoke;
 }
 
-#main-canvas {
-  margin-top: 3vh;
-}
-
 #main-canvas canvas {
   color: #F0E6FE;
   border: 3px solid hotpink;
@@ -38,7 +34,7 @@ body h4, h3, h5, p {
 
 @media all and (min-width: 450px) {
   :root {
-    --webcam-width: 18vw;
+    --webcam-width: 17vw;
   }
 }
 
