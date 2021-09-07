@@ -24,7 +24,6 @@ body h4, h3, h5, p {
 }
 
 #welcom-bg-container {
-  margin-top: 8vh;
   color: whitesmoke;
 }
 
@@ -37,6 +36,18 @@ body h4, h3, h5, p {
   border: 3px solid hotpink;
 }
 
+@media all and (min-width: 450px) {
+  :root {
+    --webcam-width: 18vw;
+  }
+}
+
+@media all and (max-width: 450px) {
+  :root {
+    --webcam-width: 55vw;
+  }
+}
+
 .webcam-position {
   position: absolute;
   top: 0;
@@ -44,7 +55,7 @@ body h4, h3, h5, p {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 18vw;
+  width: var(--webcam-width);
 }
 
 #how-to-play {
@@ -86,8 +97,16 @@ body h4, h3, h5, p {
   color: #F0E6FE;
 }
 
-#welcom-bg-container h2 {
+#welcom-bg-container h5 {
   color: #FB35F3;
+}
+
+#welcom-bg-container .pxl-art {
+  color: chartreuse;
+}
+
+#welcom-bg-container p {
+  color: #4c555e;
 }
 
 #aavegotchi-preview {
@@ -129,8 +148,8 @@ body h4, h3, h5, p {
   display: inline;
 }
 
-#score-info {
-  margin-top: 1vh;
+#score-info table {
+  width: 15%;
 }
 
 #previewed-gotchi-section {
@@ -143,6 +162,5 @@ body h4, h3, h5, p {
   text-align: right;
   padding-top: 1.6%;
 }
-
 
 /*# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/style.e308ff8e.css.map */
