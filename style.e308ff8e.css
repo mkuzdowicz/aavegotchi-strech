@@ -133,4 +133,16 @@ body h4, h3, h5, p {
   margin-top: 1vh;
 }
 
+#previewed-gotchi-section {
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+#previewed-gotchi-section .row .col:nth-child(1) {
+  text-align: right;
+  padding-top: 1.6%;
+}
+
+
 /*# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/style.e308ff8e.css.map */
