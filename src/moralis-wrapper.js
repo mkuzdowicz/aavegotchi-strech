@@ -39,8 +39,11 @@ const initWeb3 = async () => {
 }
 
 const login = async () => {
-    await Moralis.Web3.authenticate()
-
+    try {
+        await Moralis.Web3.authenticate()
+    } catch (err) {
+        alert(err.message)
+    }
     const user = await Moralis.User.current()
     window.player = user
     const userEthAddress = user.get('ethAddress')
