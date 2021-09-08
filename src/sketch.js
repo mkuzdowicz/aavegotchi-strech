@@ -47,7 +47,7 @@ const initSketch = async () => {
     const scaleDownSketch = !isMobile
     console.log('scaleSketch', scaleDownSketch)
     const w = scaleDownSketch ? window.innerWidth / 1.3 : window.innerWidth
-    const h = window.innerHeight / 1.25
+    const h = scaleDownSketch ? window.innerHeight / 1.25 : window.innerHeight
     const gotchiSize = 90
 
     let gotchiImg;
