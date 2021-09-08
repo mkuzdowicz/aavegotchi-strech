@@ -19,14 +19,19 @@
   <title>Aavegotchi Strech MiniGame</title>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N0WJ9TGJP3"></script>
-  <script>window.dataLayer = window.dataLayer || [];
+  <script>var hashv = window.location.hash.substr(1);
 
-function gtag() {
-  dataLayer.push(arguments);
-}
+if (hashv != "dev") {
+  var gtag = function gtag() {
+    dataLayer.push(arguments);
+  };
 
-gtag('js', new Date());
-gtag('config', 'G-N0WJ9TGJP3');</script>
+  window.dataLayer = window.dataLayer || [];
+  gtag('js', new Date());
+  gtag('config', 'G-N0WJ9TGJP3');
+} else {
+  console.log('No GA');
+}</script>
 <script src="https://coderdidit.com/aavegotchi-strech/bootstrap.min.5e83b927.js"></script><script src="https://coderdidit.com/aavegotchi-strech/style.e308ff8e.js"></script></head>
 
 <body>
