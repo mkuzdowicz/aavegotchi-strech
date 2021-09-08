@@ -37,6 +37,7 @@ body h4, h3, h5, p {
     --webcam-width: 17vw;
     --previewed-gotchi-p-top: 1.6%;
     --previewed-gotchi-font-size: 100%;
+    --webcam-position-mr: auto;
   }
   #previewed-gotchi-section {
     margin-bottom: 3vh;
@@ -45,15 +46,23 @@ body h4, h3, h5, p {
 
 @media all and (max-width: 450px) {
   :root {
-    --webcam-width: 45vw;
+    --webcam-width: 38vw;
     --previewed-gotchi-p-top: 0;
     --previewed-gotchi-font-size: 80%;
+    --webcam-position-mr: 0;
+  }
+  #welcom-bg {
+    margin-top: 12vh;
+  }
+  #score-info {
+    display: none;
   }
 }
 
 @media all and (max-width: 375px) {
   :root {
     --previewed-gotchi-font-size: 70%;
+    --webcam-position-mr: 0;
   }
 }
 
@@ -63,7 +72,7 @@ body h4, h3, h5, p {
   left: 0;
   right: 0;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: var(--webcam-position-mr);
   width: var(--webcam-width);
 }
 
