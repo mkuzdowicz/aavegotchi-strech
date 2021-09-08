@@ -36,6 +36,7 @@ const setupPlayerSVG = async () => {
   renderTraits()
   return svgDataUri
 }
+const isMobile = window.innerWidth < 450
 
 const initSketch = async () => {
   const svgDataUri = await setupPlayerSVG()
@@ -43,9 +44,9 @@ const initSketch = async () => {
 
   const sketch = async (s) => {
     // for making bigger on mobile
-    const scaleSketch = window.innerWidth > 450
-    console.log('scaleSketch', scaleSketch)
-    const w = scaleSketch ? window.innerWidth / 1.3 : window.innerWidth
+    const scaleDownSketch = !isMobile
+    console.log('scaleSketch', scaleDownSketch)
+    const w = scaleDownSketch ? window.innerWidth / 1.3 : window.innerWidth
     const h = window.innerHeight / 1.25
     const gotchiSize = 90
 
@@ -115,7 +116,7 @@ const initSketch = async () => {
 
     const drawLadder = () => {
       s.fill(81, 1, 176);
-      const rectWidth = 90
+      const rectWidth = isMobile ? 70 : 90
       s.rect((w / 2) - rectWidth / 2, 0, rectWidth, h - 90);
     }
     
