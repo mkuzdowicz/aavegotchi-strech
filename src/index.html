@@ -20,11 +20,16 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N0WJ9TGJP3"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    const hashv = window.location.hash.substr(1)
+    if (hashv != "dev") {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
-    gtag('config', 'G-N0WJ9TGJP3');
+      gtag('config', 'G-N0WJ9TGJP3');
+    } else {
+      console.log('No GA')
+    }
   </script>
 </head>
 
@@ -87,8 +92,8 @@
   </div>
   <!-- Youtube -->
   <div id="how-to-play">
-    <a target="_blank" id="find-me-on-yt" class="btn btn-sm btn-primary" href="https://www.youtube.com/watch?v=WJXl-rI7pyA"
-      role="button">
+    <a target="_blank" id="find-me-on-yt" class="btn btn-sm btn-primary"
+      href="https://www.youtube.com/watch?v=WJXl-rI7pyA" role="button">
       How to Play
       <i class="fab fa-youtube"></i>
     </a>
