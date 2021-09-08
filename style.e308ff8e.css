@@ -35,12 +35,25 @@ body h4, h3, h5, p {
 @media all and (min-width: 450px) {
   :root {
     --webcam-width: 17vw;
+    --previewed-gotchi-p-top: 1.6%;
+    --previewed-gotchi-font-size: 100%;
+  }
+  #previewed-gotchi-section {
+    margin-bottom: 3vh;
   }
 }
 
 @media all and (max-width: 450px) {
   :root {
-    --webcam-width: 35vw;
+    --webcam-width: 45vw;
+    --previewed-gotchi-p-top: 0;
+    --previewed-gotchi-font-size: 80%;
+  }
+}
+
+@media all and (max-width: 375px) {
+  :root {
+    --previewed-gotchi-font-size: 70%;
   }
 }
 
@@ -152,11 +165,12 @@ body h4, h3, h5, p {
   padding: 0;
   width: 100%;
   height: auto;
+  font-size: var(--previewed-gotchi-font-size);
 }
 
 #previewed-gotchi-section .row .col:nth-child(1) {
   text-align: right;
-  padding-top: 1.6%;
+  padding-top: var(--previewed-gotchi-p-top);
 }
 
 /*# sourceMappingURL=https://coderdidit.com/aavegotchi-strech/style.e308ff8e.css.map */
