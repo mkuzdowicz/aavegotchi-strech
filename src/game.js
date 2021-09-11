@@ -127,7 +127,7 @@ const setupGame = async () => {
             if (window.gameStateIsInMove()) {
                 //  Move up
                 const velocity = isMobile ? 90 : 200
-                gotchi.setVelocityY(velocity);
+                gotchi.setVelocityY(-velocity);
                 popSound.play()
             }
         }
