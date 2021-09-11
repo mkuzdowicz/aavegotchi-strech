@@ -72,8 +72,8 @@ const getGotchiSVG = async (wearables, numericTraits) => {
         return styledSvg;
     };
     const rawSVGNoBG = removeBG(rawSVG)
-    const svgStrBase64 = window.btoa(rawSVGNoBG)
-    const svgDataUri = `data:image/svg+xml;base64,${svgStrBase64}`
+    const blob = new Blob([rawSVGNoBG], { type: 'image/svg+xml;charset=utf-8' });
+    const svgDataUri = URL.createObjectURL(blob);
     return svgDataUri
 }
 

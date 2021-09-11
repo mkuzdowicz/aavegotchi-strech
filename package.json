@@ -23,7 +23,8 @@
     "moralis": "^0.0.41",
     "p5": "^1.4.0",
     "parcel-bundler": "^1.12.5",
-    "party-js": "^2.0.1"
+    "party-js": "^2.0.1",
+    "phaser": "^3.55.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

@@ -30,8 +30,10 @@ window.gameStateIsInMove = () => {
         // otherwise do not increment if it was flickering
         if (window.strechesInSession == 0) {
             window.strechesInSession = window.strechesInSession + 1
+            document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
         } else if (timeDiff >= 0.5) {
             window.strechesInSession = window.strechesInSession + 1
+            document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
         }
     }
     return window.gameState == move
@@ -52,6 +54,5 @@ export default function updatePlayerStats() {
         window.player.save()
     }
     document.getElementById('user-score').innerHTML = window.gameScore
-    document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession
     document.getElementById('total-strech-count').innerHTML = window.totalStrechCount
 }
