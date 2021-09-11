@@ -67,11 +67,22 @@ const getGotchiSVG = async (wearables, numericTraits) => {
             numericTraits: numericTraits,
             equippedWearables: wearables
         })
+
+    const parser = new DOMParser();
+    const result = parser.parseFromString(rawSVG, 'text/xml');
+    const inlineSVG = result.getElementsByTagName("svg")[0];
+    if (inlineSVG.getAttribute('width') == undefined) {
+        inlineSVG.setAttribute('width', '180px');
+        inlineSVG.setAttribute('height', '180px');
+    }
+
+    const rawSVGEnhanced = new XMLSerializer().serializeToString(inlineSVG)
+
     const removeBG = (svg) => {
         const styledSvg = svg.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
         return styledSvg;
     };
-    const rawSVGNoBG = removeBG(rawSVG)
+    const rawSVGNoBG = removeBG(rawSVGEnhanced)
     const blob = new Blob([rawSVGNoBG], { type: 'image/svg+xml;charset=utf-8' });
     const svgDataUri = URL.createObjectURL(blob);
     return svgDataUri

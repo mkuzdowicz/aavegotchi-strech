@@ -100,7 +100,7 @@ const setupGame = async () => {
             // Create gotchi
             gotchi = this.physics.add
                 .sprite(config.width / 2, config.height - 60, 'gotchi')
-            gotchi.setScale(0.69)
+            gotchi.setScale(0.55)
         },
 
         create: function () {
