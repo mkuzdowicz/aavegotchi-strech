@@ -157,8 +157,10 @@ window.gameStateIsInMove = function () {
 
     if (window.strechesInSession == 0) {
       window.strechesInSession = window.strechesInSession + 1;
+      document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession;
     } else if (timeDiff >= 0.5) {
       window.strechesInSession = window.strechesInSession + 1;
+      document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession;
     }
   }
 
@@ -181,7 +183,6 @@ function updatePlayerStats() {
   }
 
   document.getElementById('user-score').innerHTML = window.gameScore;
-  document.getElementById('strech-count-in-session').innerHTML = window.strechesInSession;
   document.getElementById('total-strech-count').innerHTML = window.totalStrechCount;
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -212,7 +213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57929" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55473" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
