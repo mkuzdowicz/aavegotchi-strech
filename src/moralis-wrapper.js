@@ -77,15 +77,12 @@ const getGotchiSVG = async (wearables, numericTraits) => {
     }
 
     const rawSVGEnhanced = new XMLSerializer().serializeToString(inlineSVG)
-
     const removeBG = (svg) => {
         const styledSvg = svg.replace("<style>", "<style>.gotchi-bg,.wearable-bg{display: none}");
         return styledSvg;
     };
     const rawSVGNoBG = removeBG(rawSVGEnhanced)
-    const blob = new Blob([rawSVGNoBG], { type: 'image/svg+xml;charset=utf-8' });
-    const svgDataUri = URL.createObjectURL(blob);
-    return svgDataUri
+    return rawSVGNoBG
 }
 
 export { initWeb3, login, logout, getGotchiSVG }

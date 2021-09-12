@@ -33,8 +33,10 @@ let gotchi
 const numericTraits = [1, 5, 99, 29, 6, 8] // at index 0 is hat
 const equippedWearables = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-const renderTraits = (svgDataUri) => {
+const renderTraits = (svgString) => {
     const aavegotchiPreview = document.getElementById('aavegotchi-preview')
+    const svgStrBase64 = window.btoa(svgString)
+    const svgDataUri = `data:image/svg+xml;base64,${svgStrBase64}`
     aavegotchiPreview.src = svgDataUri
     const gotchiTraitsDiv = document.getElementById('gotchi-traits')
     const numericTraitsNames = ['⚡️ Energy', '👹 Aggression', '👻 Spookiness', '🧠 Brain size']
@@ -46,13 +48,19 @@ const renderTraits = (svgDataUri) => {
 }
 
 const setupPlayerSVG = async () => {
-    const svgDataUri = await moralis.getGotchiSVG(equippedWearables, numericTraits)
-    renderTraits(svgDataUri)
-    return svgDataUri
+    const svgString = await moralis.getGotchiSVG(equippedWearables, numericTraits)
+    renderTraits(svgString)
+    return svgString
+}
+
+const svgStringToURL = (svgString) => {
+    const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+    return URL.createObjectURL(blob);
 }
 
 const setupGame = async () => {
-    const svgDataUri = await setupPlayerSVG()
+    const svgString = await setupPlayerSVG()
+    const svgDataUrl = svgStringToURL(svgString)
 
     const gamePlay = new Phaser.Class({
         // Define scene
@@ -64,9 +72,10 @@ const setupGame = async () => {
         rePreviewGotchi: async function () {
             const hat = equippedWearables[0] + 1
             equippedWearables[0] = hat
-            const svgDataUri = await moralis.getGotchiSVG(equippedWearables, numericTraits)
+            const svgString = await moralis.getGotchiSVG(equippedWearables, numericTraits)
+            const svgDataUrl = svgStringToURL(svgString)
             this.textures.removeKey('gotchi')
-            this.load.svg('gotchi', svgDataUri)
+            this.load.svg('gotchi', svgDataUrl)
             this.load.start()
         },
 
@@ -82,7 +91,7 @@ const setupGame = async () => {
                 "ladder",
                 ladderPath
             );
-            this.load.svg('gotchi', svgDataUri)
+            this.load.svg('gotchi', svgDataUrl)
         },
 
         updateSrites: function () {

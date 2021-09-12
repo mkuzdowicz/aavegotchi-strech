@@ -160,12 +160,6 @@ body h4, h3, h5, p {
   color: chocolate;
 }
 
-#chrome-icon {
-  width: 30px;
-  height: 30px;
-  display: inline;
-}
-
 #score-info table {
   width: 15%;
 }
